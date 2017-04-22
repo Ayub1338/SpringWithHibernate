@@ -1,0 +1,6 @@
+com\local\bisuness\ActorMgr.class
+com\local\dao\ActorDaoImpl.class
+com\local\bisuness\ActorMgrImpl.class
+com\local\controller\SpringController.class
+com\local\model\Actor.class
+com\local\dao\ActorDao.class
