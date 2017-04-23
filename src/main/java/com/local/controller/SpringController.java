@@ -19,6 +19,7 @@ public class SpringController {
  	@Autowired(required = true)
 	 private ActorMgr actorMgr;
 	
+ 	//commented
  	
  	@RequestMapping(value = "/",method = RequestMethod.GET)
  	public String getIndexPage(){
