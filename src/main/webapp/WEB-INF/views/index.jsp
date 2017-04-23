@@ -18,18 +18,28 @@
 </head>
 
 <div class="container">
-	<div class="col-md-3">
-		<form class="navbar-form" role="search">
-			<div class="input-group add-on">
-				<input class="form-control" placeholder="Search" name="searchKey"
+	<div>
+		<form>
+				<input width="50%" class="form-control" placeholder="Search" name="searchKey"
 					id="searchKey" type="text">
 				<div>
-					<button   class="btn btn-primary"
-						class="btn-group btn-group-lg" value="Search" id="searchButton"
-						type="button">Search</button>
+					<button width="25%" class="btn btn-primary" class="btn-group btn-group-lg"
+						value="Search" id="searchButton" type="button">Search</button>
 				</div>
-			</div>
+
+				<table id="table" width = "80%" border="true" class="hidden">
+					<tr>
+						<th>Actor Id</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Last Update</th>
+					</tr><br/>
+				</table>
+
 		</form>
+
+
+
 
 
 
