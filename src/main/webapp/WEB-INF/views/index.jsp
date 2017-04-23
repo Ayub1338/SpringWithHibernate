@@ -26,6 +26,9 @@
 				<button width="25%" class="btn btn-primary"
 					class="btn-group btn-group-lg" value="Search" id="searchButton"
 					type="button">Search</button>
+				<button width="25%" class="btn btn-primary"
+					class="btn-group btn-group-lg" value="getAllActors" id="getAllActors"
+					type="button">All Actors</button>
 			</div>
 
 			<div class="container">
@@ -37,7 +40,10 @@
 						<th>Last Name</th>
 						<th>Last Update</th>
 					</tr>
-					<br />
+					<tbody id = "tableElements">
+					
+					</tbody>
+				 
 				</table>
 			</div>
 
