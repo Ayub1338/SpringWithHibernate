@@ -39,12 +39,17 @@ public class SpringController {
 		
 		
 	}
-
 	
 	@RequestMapping(value = "/getActorDetails/{actorId}",method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE) 
 		public @ResponseBody Object getActorDetails(@PathVariable("actorId") String actorId ){
 			System.out.println("in controller");
-			Actor actor = actorMgr.getActorById(actorId);
+			Actor actor = null;
+			try{
+			  actor = actorMgr.getActorById(actorId);
+			}
+			catch(Exception e){
+				e.printStackTrace();
+			}
 			
 			return actor;
 		}

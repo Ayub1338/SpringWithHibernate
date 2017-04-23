@@ -43,9 +43,13 @@ public class ActorDaoImpl implements ActorDao {
 
 	@Override
 	public Actor getActorById(String actorId) {
+		Actor actor = null;
+		
 		Session session = sessionFactory.openSession();
 		 Integer actorID = new Integer(actorId);
-		Actor actor = (Actor) session.get(Actor.class, actorID);
+		  actor = (Actor) session.get(Actor.class, actorID);
+		
+		
 		return actor;
 		
 	
