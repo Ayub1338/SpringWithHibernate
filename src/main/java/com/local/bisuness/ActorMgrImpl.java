@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.local.dao.ActorDao;
 import com.local.model.Actor;
+import com.local.model.User;
 
 @Service("ActorMgr")
 @Transactional
@@ -29,6 +30,20 @@ public class ActorMgrImpl implements ActorMgr{
 	public Actor getActorById(String actorId) {
 		
 		return actorDao.getActorById(actorId);
+	}
+
+
+	@Override
+	public Actor getjasperReport(String actorId) {
+		actorDao.getjasperReport(actorId);
+		return new Actor();
+	}
+
+
+	@Override
+	public void createUser(User user) {
+		actorDao.createUser(user);
+		
 	}
 
 	

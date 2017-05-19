@@ -16,10 +16,9 @@
 	src="${pageContext.request.contextPath}/js/index.js"></script>
 
 </head>
-
 <div class="container">
 	<div>
-		<form>
+		<form action="/SpringMavenMvc/getLoginPage">
 			<input width="50%" class="form-control" placeholder="Search"
 				name="searchKey" id="searchKey" type="text">
 			<div>
@@ -29,6 +28,9 @@
 				<button width="25%" class="btn btn-primary"
 					class="btn-group btn-group-lg" value="getAllActors" id="getAllActors"
 					type="button">All Actors</button>
+					<button width="25%" class="btn btn-primary"
+					class="btn-group btn-group-lg" value="getLoginPage" id="getLoginPage"
+					type="submit" >Get Login Page</button>
 			</div>
 
 			<div class="container">

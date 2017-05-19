@@ -1,9 +1,17 @@
  $(document).ready(function(){
-  
+	
  cache = false;
    $("#searchButton").click(function(event) {
-	   $("#tableElements").empty();
 	   var searchKey = $("#searchKey").val();
+	   $("#tableElements").empty();
+	   if(searchKey.length == 0 ){
+		   alert("Search Cannot be Empty");
+		   }
+		   else if( isNaN(searchKey)){
+			   alert("Only Numeric Allowed");
+			   }
+		   
+		   else{
 	   $.ajax({
 	        url: '/SpringMavenMvc/getActorDetails/'+searchKey,
 	        dataType: "json",
@@ -28,6 +36,7 @@
 		   }
 	   
 	      });
+	      }
    });
    $("#getAllActors").click(function(event) {
 	   $("#tableElements").empty();
@@ -59,7 +68,49 @@
 	   
 	      });
    });
+   
+     $("#getJasperReport").click(function(event) {
+	   var searchKey = $("#searchKey").val();
+	   $("#tableElements").empty();
+	   if(searchKey.length == 0 ){
+		   alert("Search Cannot be Empty");
+		   }
+		   else if( isNaN(searchKey)){
+			   alert("Only Numeric Allowed");
+			   }
+		   
+		   else{
+	   $.ajax({
+	        url: '/SpringMavenMvc/getjasperReport/'+searchKey,
+	        dataType: "json",
+	        type: "GET",
+	        contentType: 'application/json',
+	   success: function(data){
+		  
+		   
+
+	   },
+	      error: function(xhr, status, error) {
+		   alert(status+error)
+		   }
+	   
+	      });
+	      }
+   });
+   $("#getLoginPage").click(function(event) {
+	  
+	  alert("getlogin page");
+	   $.ajax({
+	        url: '/SpringMavenMvc/getLoginPage'
+
+	   
+	      });
+	      
+   });
   
    
+
    
-  });
+   
+ });
+   
