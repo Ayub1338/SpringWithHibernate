@@ -13,6 +13,6 @@ public interface ActorMgr {
 
 	public Actor getjasperReport(String actorId);
 
-	public void createUser(User user);
+	public Object createUser(User user);
 
 }

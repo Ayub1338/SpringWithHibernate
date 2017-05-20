@@ -1,6 +1,5 @@
 package com.local.controller;
 
-
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,77 +22,76 @@ import com.local.model.User;
 
 @Controller
 public class SpringController {
-	
- 	@Autowired(required = true)
-	 private ActorMgr actorMgr;
-	
- 	//commented
- 	
- 	@RequestMapping(value = "/",method = RequestMethod.GET)
- 	public String getIndexPage(){
- 		ModelAndView modelAndView = new ModelAndView();
- 		modelAndView.setViewName("index");
- 		//return modelAndView;
- 		return "index";
- 	}
- 	
- 	
- 	
- 	
-	@RequestMapping(value = "/getAllActors" , method = RequestMethod.GET)
-	public  @ResponseBody Object  getAllActors(){
+
+	@Autowired(required = true)
+	private ActorMgr actorMgr;
+
+	// commented
+
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String getIndexPage() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("index");
+		// return modelAndView;
+		return "index";
+	}
+
+	@RequestMapping(value = "/getAllActors", method = RequestMethod.GET)
+	public @ResponseBody Object getAllActors() {
 		System.out.println("in controller");
 		return actorMgr.getAllActors();
-		
-		
+
 	}
-	
-	@RequestMapping(value = "/getActorDetails/{actorId}",method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE) 
-		public @ResponseBody Object getActorDetails(@PathVariable("actorId") String actorId ){
-			System.out.println("in controller");
-			Actor actor = null;
-			try{
-			  actor = actorMgr.getActorById(actorId);
-			}
-			catch(Exception e){
-				e.printStackTrace();
-			}
-			
-			return actor;
-		}
-	
-	
-	@RequestMapping(value = "/getjasperReport/{actorId}",method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE) 
-	public @ResponseBody Object getjasperReport(@PathVariable("actorId") String actorId ){
+
+	@RequestMapping(value = "/getActorDetails/{actorId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody Object getActorDetails(@PathVariable("actorId") String actorId) {
 		System.out.println("in controller");
 		Actor actor = null;
-		try{
-		  actor = actorMgr.getjasperReport(actorId);
-		}
-		catch(Exception e){
+		try {
+			actor = actorMgr.getActorById(actorId);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return actor;
 	}
-	@RequestMapping(value = "/getLoginPage",method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE) 
-	public String  getLoginPage(HttpServletResponse response) throws IOException{
+
+	@RequestMapping(value = "/getjasperReport/{actorId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody Object getjasperReport(@PathVariable("actorId") String actorId) {
+		System.out.println("in controller");
+		Actor actor = null;
+		try {
+			actor = actorMgr.getjasperReport(actorId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return actor;
+	}
+
+	@RequestMapping(value = "/getLoginPage", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public String getLoginPage(HttpServletResponse response) throws IOException {
 		System.out.println("In controller");
 		return "create_user";
 	}
-	@RequestMapping(value = "/createUser",method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE) 
-	public void  createUser(HttpServletRequest request,HttpServletResponse response) throws IOException{
-		User user = new User();
-		String userName = (String) request.getParameter("userName");
-		String password = (String) request.getParameter("password");
-		String emailId = (String) request.getParameter("emailId");
-		String name = (String) request.getParameter("name");
-		
-		user.setDisplayName(userName);
+
+	@RequestMapping(value = "/createUser", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody Object createUser(HttpServletRequest request, HttpServletResponse response,
+			@RequestBody User user) throws IOException {
+		// User user = new User();
+		String userName = user.getUserName();
+		// (String) request.getParameter("userName");
+		String password = user.getPassword();
+		// (String) request.getParameter("password");
+		String emailId = user.getEmail();
+		// (String) request.getParameter("emailId");
+
+		user.setUserName(userName);
 		user.setEmail(emailId);
 		user.setPassword(password);
-		
-		actorMgr.createUser(user);
+		String ContentType = "application/json";
+		response.setContentType(ContentType);
+		return actorMgr.createUser(user);
 	}
-	
+
 }

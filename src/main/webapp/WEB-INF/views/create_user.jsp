@@ -8,7 +8,7 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/jquery-3.2.1"></script>
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/js/index.js"></script>
+	src="${pageContext.request.contextPath}/js/create_user.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
@@ -38,17 +38,11 @@
 			<td>Email Id:</td>
 			<td><input width="40%" class="form-control"
 				placeholder="Email Id" name="emailId" id="emailId" type="text"></td>
-			<tr>
-
-				<td>Name:</td>
-				<td><input width="40%" class="form-control" placeholder="Name"
-					name="name" id="name" type="text"></td>
-			</tr>
 			
 		</table>
 		 <input  align = "center" type="Reset"> 
-			 <input type="submit"  align = "center" 
-				value="create user"> 
+			 <input type="button"  align = "center" 
+				value="create user" id="create_user"> 
 			 
 		
 	</div>

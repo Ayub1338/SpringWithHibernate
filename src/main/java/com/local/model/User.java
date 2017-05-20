@@ -15,13 +15,13 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="user_id",updatable = false, nullable = false)
+	@Column(name="user_id",updatable = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	
 	private int userId;
 
-	@Column(name="display_name")
-	private String displayName;
+	@Column(name="user_name")
+	private String userName;
 
 	private String email;
 
@@ -31,29 +31,23 @@ public class User implements Serializable {
 	}
 
 	public int getUserId() {
-		return this.userId;
+		return userId;
 	}
 
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 
-	public String getDisplayName() {
-		return this.displayName;
+	public String getUserName() {
+		return userName;
 	}
 
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", displayName=" + displayName + ", email=" + email + ", password=" + password
-				+ "]";
-	}
-
-	public void setDisplayName(String displayName) {
-		this.displayName = displayName;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getEmail() {
-		return this.email;
+		return email;
 	}
 
 	public void setEmail(String email) {
@@ -61,11 +55,13 @@ public class User implements Serializable {
 	}
 
 	public String getPassword() {
-		return this.password;
+		return password;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	 
 
 }

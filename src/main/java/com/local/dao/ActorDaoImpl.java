@@ -63,17 +63,23 @@ public class ActorDaoImpl implements ActorDao {
 	}
 
 	@Override
-	public void createUser(User user) {
+	public Object createUser(User user) {
 		Transaction tx = null;
 	 
 		Session session = sessionFactory.openSession();
 	session.beginTransaction();
 		System.out.println(user.toString());
+		try{
 		session.save(user);
 		System.out.println("Inserted Successfully");
 		session.getTransaction().commit();
 		session.close();
 		sessionFactory.close();
+		}
+		catch(Exception e){
+			return e.getMessage();
+		}
+		return user;
 	
 
 	}

@@ -41,8 +41,8 @@ public class ActorMgrImpl implements ActorMgr{
 
 
 	@Override
-	public void createUser(User user) {
-		actorDao.createUser(user);
+	public Object createUser(User user) {
+		return actorDao.createUser(user);
 		
 	}
 

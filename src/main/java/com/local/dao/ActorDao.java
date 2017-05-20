@@ -15,5 +15,5 @@ public Actor getActorById(String actorId);
 
 public void getjasperReport(String actorId);
 
-public void createUser(User user);
+public Object createUser(User user);
 }
