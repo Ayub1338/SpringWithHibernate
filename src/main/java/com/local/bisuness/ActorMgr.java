@@ -1,5 +1,6 @@
 package com.local.bisuness;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import com.local.model.Actor;
@@ -14,5 +15,7 @@ public interface ActorMgr {
 	public Actor getjasperReport(String actorId);
 
 	public Object createUser(User user);
+
+	public byte[] getJasperReport() throws FileNotFoundException;
 
 }

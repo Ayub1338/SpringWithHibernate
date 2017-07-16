@@ -1,23 +1,31 @@
 package com.local.dao;
 
-import java.io.Serializable;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.sql.Connection;
+import java.util.HashMap;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.orm.hibernate3.AbstractSessionFactoryBean;
-import org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ResourceUtils;
 
+import com.local.commons.Database;
 import com.local.model.Actor;
 import com.local.model.User;
+
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
 
 @Repository("ActorDao")
 public class ActorDaoImpl implements ActorDao {
@@ -83,5 +91,25 @@ public class ActorDaoImpl implements ActorDao {
 	
 
 	}
+
+	@Override
+	public JasperPrint getJasperReport() throws FileNotFoundException, JRException {
+		JasperPrint jasperPrint = null;
+		/// SpringMavenMvc/src/main/resources/jasper/Blank_Letter_Landscape_Table_Based.jasper
+		File file = ResourceUtils.getFile("classpath:/jasper/Blank_Letter_Landscape_Table_Based.jrxml");
+		Connection con = Database.getConnection();
+		FileInputStream inputStream = new FileInputStream(file);
+		System.out.println(file.getPath());
+		System.out.println(file.getAbsolutePath());
+
+		JasperReport jasperReport = JasperCompileManager.compileReport(inputStream);
+		HashMap<String, Object> params = new HashMap<>();
+		jasperPrint = JasperFillManager.fillReport(jasperReport, params, con);
+
+		return jasperPrint;
+
+	}
+	
+	
 
 }

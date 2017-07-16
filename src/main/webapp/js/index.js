@@ -69,34 +69,6 @@
 	      });
    });
    
-     $("#getJasperReport").click(function(event) {
-	   var searchKey = $("#searchKey").val();
-	   $("#tableElements").empty();
-	   if(searchKey.length == 0 ){
-		   alert("Search Cannot be Empty");
-		   }
-		   else if( isNaN(searchKey)){
-			   alert("Only Numeric Allowed");
-			   }
-		   
-		   else{
-	   $.ajax({
-	        url: '/SpringMavenMvc/getjasperReport/'+searchKey,
-	        dataType: "json",
-	        type: "GET",
-	        contentType: 'application/json',
-	   success: function(data){
-		  
-		   
-
-	   },
-	      error: function(xhr, status, error) {
-		   alert(status+error)
-		   }
-	   
-	      });
-	      }
-   });
    $("#getLoginPage").click(function(event) {
 	  
 	  alert("getlogin page");
@@ -107,8 +79,27 @@
 	      });
 	      
    });
-  
    
+    $("#getJasperReport").click(function(event) {
+	  
+	  alert("getJasperReport");
+	  $.ajax({
+	        url: '/SpringMavenMvc/getJasperReport',
+	        //dataType: 'application/pdf',
+	        type: "GET",
+	        contentType: 'json',
+	   success: function(data){
+		  var file = new Blob([JSON.stringify(data)], { type: 'application/pdf' });
+          var fileURL = URL.createObjectURL(file);
+          window.open(fileURL);
+	   },
+	      error: function(xhr, status, error) {
+		   alert(status+error)
+		   }
+	   
+	      });
+	      
+   });
 
    
    

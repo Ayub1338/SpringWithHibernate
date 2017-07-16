@@ -1,5 +1,7 @@
 package com.local.bisuness;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.local.dao.ActorDao;
 import com.local.model.Actor;
 import com.local.model.User;
+
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRExporter;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperPrint;
 
 @Service("ActorMgr")
 @Transactional
@@ -44,6 +51,21 @@ public class ActorMgrImpl implements ActorMgr{
 	public Object createUser(User user) {
 		return actorDao.createUser(user);
 		
+	}
+
+
+	@Override
+	public byte[] getJasperReport() throws FileNotFoundException {
+		
+		byte[] byteInArray = null;
+		try {
+			JasperPrint jasperPrint = actorDao.getJasperReport();
+			byteInArray = JasperExportManager.exportReportToPdf(jasperPrint);
+		} catch (JRException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return byteInArray;
 	}
 
 	

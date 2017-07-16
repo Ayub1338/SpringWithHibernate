@@ -31,6 +31,11 @@
 					<button width="25%" class="btn btn-primary"
 					class="btn-group btn-group-lg" value="getLoginPage" id="getLoginPage"
 					type="submit" >Get Login Page</button>
+					
+					
+					<button width="25%" class="btn btn-primary"
+					class="btn-group btn-group-lg" value="" id="getJasperReport"
+					type="button" >Get Jasper Report Page</button>
 			</div>
 
 			<div class="container">

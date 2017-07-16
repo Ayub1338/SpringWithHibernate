@@ -93,5 +93,13 @@ public class SpringController {
 		response.setContentType(ContentType);
 		return actorMgr.createUser(user);
 	}
+	
+	@RequestMapping(value = "/getJasperReport", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody Object getJasperReport(HttpServletResponse response) throws IOException {
+		System.out.println("In controller");
+		byte[] responseInBytes = actorMgr.getJasperReport();
+		return responseInBytes;
+		
+	}
 
 }
