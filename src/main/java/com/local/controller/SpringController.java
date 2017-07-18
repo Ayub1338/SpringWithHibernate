@@ -1,6 +1,7 @@
 package com.local.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.local.bisuness.ActorMgr;
 import com.local.model.Actor;
 import com.local.model.User;
+
+import ar.com.fdvs.dj.domain.builders.ColumnBuilderException;
 
 @Controller
 public class SpringController {
@@ -95,7 +98,7 @@ public class SpringController {
 	}
 	
 	@RequestMapping(value = "/getJasperReport", method = RequestMethod.GET)
-	public @ResponseBody Object getJasperReport(HttpServletResponse response) throws IOException {
+	public @ResponseBody Object getJasperReport(HttpServletResponse response) throws IOException, SQLException {
 		System.out.println("In controller");
 		byte[] responseInBytes = actorMgr.getJasperReport();
 		String bytesInString = new String(responseInBytes);
@@ -105,5 +108,15 @@ public class SpringController {
 		return actor;
 		
 	}
-
+	@RequestMapping(value = "/generateDynamicJasperReport", method = RequestMethod.GET)
+	public @ResponseBody Object generateDynamicJasperReport(HttpServletResponse response) throws IOException, ClassNotFoundException, ColumnBuilderException, SQLException, IllegalArgumentException, IllegalAccessException {
+		System.out.println("In controller");
+		byte[] responseInBytes = actorMgr.generateDynamicJasperReport();
+		//String bytesInString = new String(responseInBytes);
+		Actor actor = new Actor();
+		response.setContentType("application/pdf");
+		//actor.setFirstName(bytesInString);
+		return responseInBytes;
+		
+	}
 }
