@@ -110,6 +110,68 @@ public class ActorDaoImpl implements ActorDao {
 
 	}
 	
+	@Override
+	public JasperPrint generateDynamicJasperReport(AddictivesSearchDTO addictivesSearchDTO)
+			throws JRException, ClassNotFoundException, SQLException {
+		FastReportBuilder drb = new FastReportBuilder();
+		Style defaultStyle = getDefaultStyle();
+		drb.setDefaultStyles(defaultStyle, defaultStyle, getColumnHeaderStyle(), getColumnDetailsStyle());
+		DynamicReport dr = drb.addColumn("Primary Key", "id", Long.class.getName(), 50)
+				.addColumn("code", "code", String.class.getName(), 50)
+				.addColumn("description", "description", String.class.getName(), 50)
+				.addColumn("displayMessage","displayMessage",String.class.getName(), 50)
+				.setUseFullPageWidth(true).setIgnorePagination(true)
+				.build();
+		JRDataSource ds = new JRBeanCollectionDataSource(getDummyCollection());
+		JasperPrint jasperPrint = DynamicJasperHelper.generateJasperPrint(dr, new ClassicLayoutManager(), ds);
+		 JasperViewer.viewReport(jasperPrint);
+		return jasperPrint;
+	}
+
+	private Style getDefaultStyle() {
+		Style defaultStyle = new Style();
+		defaultStyle.setName("DefaultStyle");
+		defaultStyle.getFont().setFontName("DejaVu Sans");
+		defaultStyle.getFont().setFontSize(14f);
+		defaultStyle.setHorizontalAlign(HorizontalAlign.CENTER);
+		defaultStyle.setBorder(new Border(0.5f,Border.BORDER_STYLE_SOLID,Color.BLUE));
+		defaultStyle.setBackgroundColor(Color.LIGHT_GRAY);
+		defaultStyle.setTransparency(Transparency.OPAQUE);
+		return defaultStyle;
+	}
+	private Style getColumnDetailsStyle() {
+		Style defaultStyle = new Style();
+		defaultStyle.setName("column detail style");
+		defaultStyle.getFont().setFontName("DejaVu Sans");
+		defaultStyle.getFont().setFontSize(10f);;
+		defaultStyle.setHorizontalAlign(HorizontalAlign.CENTER);
+		defaultStyle.setBorder(new Border(0.5f,Border.BORDER_STYLE_SOLID,Color.BLUE));
+		defaultStyle.setBackgroundColor(Color.WHITE);
+		defaultStyle.setTransparency(Transparency.OPAQUE);
+		return defaultStyle;
+	}
 	
+	private Style getColumnHeaderStyle() {
+		Style defaultStyle = new Style();
+		defaultStyle.setName("BgStyle");
+		defaultStyle.getFont().setFontName("DejaVu Sans");
+		defaultStyle.getFont().setFontSize(14f);
+		defaultStyle.getFont().setBold(true);
+		defaultStyle.setHorizontalAlign(HorizontalAlign.CENTER);
+		defaultStyle.setBorder(new Border(0.5f,Border.BORDER_STYLE_SOLID,Color.BLUE));
+		defaultStyle.setBackgroundColor(Color.LIGHT_GRAY);
+		defaultStyle.setTransparency(Transparency.OPAQUE);
+		return defaultStyle;
+	}
+	
+	private List<LookupDTO> getDummyCollection(){
+		List<LookupDTO> dummyList = new ArrayList<>();
+		dummyList.add(new LookupDTO(1l, "code1", "description1", "displayMessage1"));
+		dummyList.add(new LookupDTO(2l, "code2", "description2", "displayMessage2"));
+		dummyList.add(new LookupDTO(3l, "code3", "description3", "displayMessage3"));
+		dummyList.add(new LookupDTO(4l, "code4", "description4", "displayMessage4"));
+		return dummyList;
+		
+	}
 
 }
