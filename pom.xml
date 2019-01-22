@@ -47,8 +47,13 @@
 
 		<dependency>
 			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>${jcl-over-slf4j.version}</version>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.6.0-alpha2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.6.0-alpha2</version>
 		</dependency>
 
 		<dependency>
@@ -57,11 +62,6 @@
 			<version>${logback.version}</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/ar.com.fdvs/DynamicJasper -->
-		<dependency>
-			<groupId>ar.com.fdvs</groupId>
-			<artifactId>DynamicJasper</artifactId>
-			<version>3.0.5</version>
-		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
