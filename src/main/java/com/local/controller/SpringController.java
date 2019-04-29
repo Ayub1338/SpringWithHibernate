@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,7 +20,6 @@ import com.local.bisuness.ActorMgr;
 import com.local.model.Actor;
 import com.local.model.User;
 
-import ar.com.fdvs.dj.domain.builders.ColumnBuilderException;
 
 @Controller
 public class SpringController {
@@ -30,7 +28,7 @@ public class SpringController {
 	private ActorMgr actorMgr;
 
 	// commented
-
+//this is comment
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String getIndexPage() {
 		ModelAndView modelAndView = new ModelAndView();
@@ -80,7 +78,7 @@ public class SpringController {
 
 	@RequestMapping(value = "/createUser", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Object createUser(HttpServletRequest request, HttpServletResponse response,
-			@RequestBody User user) throws IOException {
+			@RequestBody User user) throws IOException {/*
 		// User user = new User();
 		String userName = user.getUserName();
 		// (String) request.getParameter("userName");
@@ -94,7 +92,7 @@ public class SpringController {
 		user.setPassword(password);
 		String ContentType = "application/json";
 		response.setContentType(ContentType);
-		return actorMgr.createUser(user);
+	*/	return actorMgr.createUser(user);
 	}
 	
 	@RequestMapping(value = "/getJasperReport", method = RequestMethod.GET)
@@ -109,12 +107,13 @@ public class SpringController {
 		
 	}
 	@RequestMapping(value = "/generateDynamicJasperReport", method = RequestMethod.GET)
-	public @ResponseBody Object generateDynamicJasperReport(HttpServletResponse response) throws IOException, ClassNotFoundException, ColumnBuilderException, SQLException, IllegalArgumentException, IllegalAccessException {
+	public @ResponseBody Object generateDynamicJasperReport(HttpServletResponse response) throws IOException, ClassNotFoundException, SQLException, IllegalArgumentException, IllegalAccessException {
 		System.out.println("In controller");
-		byte[] responseInBytes = actorMgr.generateDynamicJasperReport();
+	//	byte[] responseInBytes = actorMgr.generateDynamicJasperReport();
 		//String bytesInString = new String(responseInBytes);
 		Actor actor = new Actor();
 		response.setContentType("application/pdf");
+		Object responseInBytes = null;
 		//actor.setFirstName(bytesInString);
 		return responseInBytes;
 		
