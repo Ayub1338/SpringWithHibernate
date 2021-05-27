@@ -5,7 +5,6 @@
 	<artifactId>SpringMavenMvc</artifactId>
 	<version>0.0.1</version>
 	<packaging>war</packaging>
-<!-- comment -->
 	<name>SpringMavenMvc</name>
 	<url>http://maven.apache.org</url>
 	<properties>
